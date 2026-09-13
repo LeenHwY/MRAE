@@ -1,0 +1,4 @@
+resume_path = "resumes/简历模板.md"
+output_pdf = "output/resume.pdf"
+template_html = "templates/default.html"
+stylesheet = "templates/style.css"

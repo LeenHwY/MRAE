@@ -1,0 +1,96 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  color: #20252b;
+  background: #ffffff;
+  font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
+
+.resume-page {
+  width: 210mm;
+  height: 297mm;
+  overflow: visible;
+  padding: 15mm 17mm;
+}
+
+.resume-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30mm;
+  column-gap: 8mm;
+  align-items: start;
+  min-height: 40mm;
+  margin-bottom: 5mm;
+}
+
+.resume-header > p:has(> img) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 30mm;
+  height: 40mm;
+  margin: 0;
+}
+
+.resume-header > p:has(> img) > img {
+  display: block;
+  width: 30mm;
+  height: 40mm;
+  border: 1px solid #8aa2b5;
+  object-fit: cover;
+}
+
+h1 {
+  margin: 0 0 3mm;
+  color: #123047;
+  font-size: 25pt;
+  line-height: 1.1;
+}
+
+h2 {
+  margin: 6mm 0 2mm;
+  padding-bottom: 1mm;
+  border-bottom: 1px solid #8aa2b5;
+  color: #123047;
+  font-size: 13pt;
+}
+
+h3 {
+  margin: 3mm 0 0.5mm;
+  color: #314c60;
+  font-size: 11pt;
+}
+
+p {
+  margin: 1.5mm 0;
+}
+
+ul {
+  margin: 1mm 0 2mm;
+  padding-left: 5mm;
+}
+
+a {
+  color: #1c6d8c;
+}
+
+blockquote {
+  margin: 0 0 4mm;
+  padding-left: 3mm;
+  border-left: 3px solid #d2a84a;
+  color: #52616b;
+}
