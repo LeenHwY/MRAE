@@ -19,3 +19,4 @@ def test_load_config_resolves_project_paths(tmp_path: Path) -> None:
 
     assert config.resume_path == tmp_path / "resumes/resume.md"
     assert config.output_pdf == tmp_path / "output/resume.pdf"
+    assert config.playwright_browsers_path == tmp_path / ".playwright-browsers"

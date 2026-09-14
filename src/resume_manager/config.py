@@ -10,6 +10,7 @@ class AppConfig:
     output_pdf: Path
     template_html: Path
     stylesheet: Path
+    playwright_browsers_path: Path
 
     @classmethod
     def load(cls, config_path: Path) -> "AppConfig":
@@ -29,4 +30,7 @@ class AppConfig:
             output_pdf=resolve(values["output_pdf"]),
             template_html=resolve(values["template_html"]),
             stylesheet=resolve(values["stylesheet"]),
+            playwright_browsers_path=resolve(
+                values.get("playwright_browsers_path", ".playwright-browsers")
+            ),
         )

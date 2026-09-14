@@ -9,6 +9,8 @@
   font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   font-size: 10.5pt;
   line-height: 1.45;
+  --photo-width: 25mm;
+  --photo-height: 30mm;
 }
 
 * {
@@ -31,25 +33,25 @@ body {
 
 .resume-header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 30mm;
+  grid-template-columns: minmax(0, 1fr) var(--photo-width);
   column-gap: 8mm;
   align-items: start;
-  min-height: 40mm;
+  min-height: var(--photo-height);
   margin-bottom: 5mm;
 }
 
-.resume-header > p:has(> img) {
+.resume-header > .resume-photo {
   grid-column: 2;
   grid-row: 1 / span 2;
-  width: 30mm;
-  height: 40mm;
+  width: var(--photo-width);
+  height: var(--photo-height);
   margin: 0;
 }
 
-.resume-header > p:has(> img) > img {
+.resume-header > .resume-photo > img {
   display: block;
-  width: 30mm;
-  height: 40mm;
+  width: var(--photo-width);
+  height: var(--photo-height);
   border: 1px solid #8aa2b5;
   object-fit: cover;
 }

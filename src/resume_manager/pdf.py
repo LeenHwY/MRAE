@@ -1,10 +1,11 @@
 from pathlib import Path
-import tempfile
+import os
 
 from .errors import ResumeOverflowError, ResumeManagerError
 
 
-def _load_playwright():
+def _load_playwright(browsers_path: Path):
+    os.environ["PLAYWRIGHT_BROWSERS_PATH"] = str(browsers_path)
     try:
         from playwright.sync_api import Error as PlaywrightError
         from playwright.sync_api import sync_playwright
@@ -13,8 +14,8 @@ def _load_playwright():
     return PlaywrightError, sync_playwright
 
 
-def check_single_page(html: str) -> None:
-    playwright_error, sync_playwright = _load_playwright()
+def check_single_page(html: str, browsers_path: Path) -> None:
+    playwright_error, sync_playwright = _load_playwright(browsers_path)
     try:
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=True)
@@ -34,14 +35,14 @@ def check_single_page(html: str) -> None:
         ) from error
 
 
-def build_pdf(html: str, output_path: Path) -> None:
-    playwright_error, sync_playwright = _load_playwright()
+def build_pdf(html: str, output_path: Path, browsers_path: Path) -> None:
+    playwright_error, sync_playwright = _load_playwright(browsers_path)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     temporary_path = output_path.with_suffix(output_path.suffix + ".tmp")
 
     try:
-        check_single_page(html)
+        check_single_page(html, browsers_path)
         with sync_playwright() as playwright:
             browser = playwright.chromium.launch(headless=True)
             page = browser.new_page()

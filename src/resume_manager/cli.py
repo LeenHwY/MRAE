@@ -36,12 +36,12 @@ def run(command: str, config_path: Path) -> int:
     )
 
     if command == "check":
-        check_single_page(html)
+        check_single_page(html, config.playwright_browsers_path)
         print(f"检查通过: {config.resume_path}")
         print("已完成 Markdown 解析、HTML 渲染和单页 A4 溢出检查。")
         return 0
 
-    build_pdf(html, config.output_pdf)
+    build_pdf(html, config.output_pdf, config.playwright_browsers_path)
     print(f"PDF 已生成: {config.output_pdf}")
     return 0
 

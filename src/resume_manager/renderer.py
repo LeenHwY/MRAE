@@ -1,6 +1,7 @@
 from pathlib import Path
 import base64
 import mimetypes
+import re
 from urllib.parse import quote
 
 from markdown_it import MarkdownIt
@@ -47,6 +48,11 @@ def render_html(
 
     markdown.renderer.rules["image"] = render_image
     content = markdown.render(markdown_text)
+    content = re.sub(
+        r"<p>(?=<img(?:\s|>))",
+        '<p class="resume-photo">',
+        content,
+    )
     header, separator, body = content.partition("<h2>")
     if separator:
         content = f'<header class="resume-header">{header}</header>{separator}{body}'

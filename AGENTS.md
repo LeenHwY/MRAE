@@ -37,6 +37,7 @@ Python 版本要求见 `pyproject.toml`，当前最低版本为 Python 3.11。
 ```powershell
 python -m venv .venv
 .venv\Scripts\python -m pip install -e .
+$env:PLAYWRIGHT_BROWSERS_PATH = "$PWD\.playwright-browsers"
 .venv\Scripts\python -m playwright install chromium
 ```
 
@@ -45,10 +46,11 @@ python -m venv .venv
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -e .
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.playwright-browsers" \
 .venv/bin/python -m playwright install chromium
 ```
 
-不要提交 `.venv/`、Playwright 浏览器缓存或 `output/` 生成物。
+不要提交 `.venv/`、`.playwright-browsers/`、Playwright 浏览器缓存或 `output/` 生成物。
 
 ## 常用命令
 
@@ -146,7 +148,7 @@ python -m resume_manager build --config path/to/config.toml
 
 1. 创建 `.venv`。
 2. 执行 `pip install -e .`。
-3. 执行 `python -m playwright install chromium`。
+3. 设置 `PLAYWRIGHT_BROWSERS_PATH` 到项目内的 `.playwright-browsers`，执行 `python -m playwright install chromium`。
 4. 使用示例配置运行 `check`。
 5. 使用示例配置运行 `build` 并生成 `output/resume.pdf`。
 
